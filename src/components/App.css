@@ -1,0 +1,109 @@
+
+#display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #e0e7ff, #f0f0f0);
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+ 
+#display.dark {
+    background: linear-gradient(135deg, #1d2540, #35336c);
+}
+
+#InputContainer {
+  width: 800px;
+  height: 500px;
+  background-color: #c3caff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+#InputContainer.dark {
+  background: linear-gradient(135deg, #58689e, #35336c);
+}
+
+h1 {
+  font-size: 40px;
+  color: #fff;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+
+#NameInput {
+  width: 300px;
+  height: 45px;
+  font-size: 18px;
+  background-color: #fff8f0;
+  border: 2px solid #a0a0a0;
+  border-radius: 8px;
+  padding: 8px 12px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+#NameInput:focus {
+  border-color: #6b5bff;
+  box-shadow: 0 0 8px rgba(107, 91, 255, 0.4);
+}
+#GreetingButton {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+}
+
+
+#GreetingButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+
+#GreetingButton:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+#GreetingButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.5);
+}
+
+#ToggleButton {
+
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 0px 12px;
+  width: 80px;
+  height: 50px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  margin-top: 12px;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+      
+}

@@ -1,0 +1,113 @@
+#Display {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #e0e7ff, #f0f0f0);
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    perspective: 1000px;
+}
+
+#GalleryTitle {
+text-align: center;
+font-size: 36px;
+font-weight: 200;
+color: rgb(102, 90, 129);
+
+}
+
+
+#GalleryRow {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    margin-top: 20px;
+
+}
+
+
+
+#GoBackButton {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 0px 12px;
+        width: 30px;
+        height: 30px;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        margin-top: 12px;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+}
+
+.oneSide {
+    width: 250px;
+        height: 250px;
+        background-color: rgb(162, 196, 255);
+       
+    }
+
+
+.setOneSide {
+    width: 250px;
+        height: 250px;
+        background-color: rgb(96, 123, 168);
+        margin: 20px;
+    }
+
+
+
+#sadCard {
+    width: 250px;
+    height: 250px;
+    margin: 20px;
+    background-color: aliceblue;
+}
+
+#sadCard:hover {
+        background-color: rgb(46, 103, 152);
+}
+
+#boredCard {
+    width: 250px;
+    height: 250px;
+    margin: 20px;
+    background-color: grey;
+}
+
+#boredCard:hover {
+    background-color: #667eea;
+}
+
+#lonelyCard {
+width: 250px;
+height: 250px;
+margin: 20px;
+background-color: #20b3a4;
+transition: transform 0.7s;
+}
+
+#lonelyCard:hover {
+    background-color: rgb(47, 166, 40);
+    transform: rotateY(3.142rad);
+}
+
+#angryCard {
+width: 250px;
+height: 250px;
+margin: 20px;
+background-color: red;
+}
+
+#angryCard:hover {
+    background-color: #b54312;
+}
+
+
