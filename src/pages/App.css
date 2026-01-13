@@ -1,16 +1,14 @@
-
 #display {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   background: linear-gradient(135deg, #e0e7ff, #f0f0f0);
-  font-family: 'Segoe UI', Tahoma, sans-serif;
+  font-family: "Segoe UI", Tahoma, sans-serif;
 }
 
- 
 #display.dark {
-    background: linear-gradient(135deg, #1d2540, #35336c);
+  background: linear-gradient(135deg, #1d2540, #35336c);
 }
 
 #InputContainer {
@@ -38,13 +36,11 @@ h1 {
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
 }
 
-
 #NameInput {
   width: 300px;
   height: 45px;
   font-size: 18px;
   background-color: #fff8f0;
-  border: 2px solid #a0a0a0;
   border-radius: 8px;
   padding: 8px 12px;
   outline: none;
@@ -55,6 +51,27 @@ h1 {
   border-color: #6b5bff;
   box-shadow: 0 0 8px rgba(107, 91, 255, 0.4);
 }
+
+#NameInput.noerror {
+  border: 2px solid #a0a0a0;
+}
+
+#NameInput.error {
+  border: 2px solid #ff0000;
+}
+
+#InputParagraph {
+  font-size: 12px;
+}
+
+#InputParagraph.noerror {
+  color: black;
+}
+
+#InputParagraph.error {
+  color: red;
+}
+
 #GreetingButton {
   background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
@@ -69,18 +86,15 @@ h1 {
   margin-top: 20px;
 }
 
-
 #GreetingButton:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
 }
 
-
 #GreetingButton:active {
   transform: translateY(1px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
-
 
 #GreetingButton:focus {
   outline: none;
@@ -88,7 +102,6 @@ h1 {
 }
 
 #ToggleButton {
-
   background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
   font-size: 12px;
@@ -105,5 +118,4 @@ h1 {
   position: absolute;
   bottom: 20px;
   right: 20px;
-      
 }

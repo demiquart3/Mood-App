@@ -1,8 +1,8 @@
-import React, { StrictMode } from "react";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import App from "./components/App";
-import Cards from "./components/Cards";
+import App from "./pages/App";
+import Cards from "./pages/Cards";
 import "./index.css";
 
 createRoot(document.getElementById("root")!).render(
