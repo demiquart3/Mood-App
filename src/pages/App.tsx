@@ -8,86 +8,69 @@ function App() {
   const [inputValid, setInputValid] = React.useState<string | undefined>(
     undefined
   ); // inputValid
+  const [characterCounter, setCharacterCounter] = React.useState(0);
 
   const navigate = useNavigate();
 
-  // conditions here from onSubmit
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setName(e.target.value);
-  }
+  React.useEffect(() => {
+    localStorage.setItem("name", name);
+  }, [name]);
 
-  function handleGoToCards() {
-    navigate("/cards");
-  }
-
-  const setError = (message: string | undefined) => {
-    setInputValid(message);
-  };
-
-  //inputValid?
-  const handleSubmit = React.useCallback(
-    (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      if (!name) {
-        setError("Enter your name!");
+  // useCallback, currying? advanced technique of working with functions
+  const handleChange = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const name = e.target.value;
+      setName(name);
+      setCharacterCounter(e.target.value.length);
+      if (name.length > 15) {
+        setInputValid("The name is too long!");
+      } else if (!name) {
+        setInputValid("Enter your name!");
         return;
       } else if (name.length <= 1) {
-        setError("The name is too short!");
+        setInputValid("The name is too short!");
         return;
+      } else if (name === "") {
+        setInputValid("Enter your name!");
       } else if (name.trim() !== "" && Number.isFinite(Number(name.trim()))) {
-        setError("Your name must have letters!");
+        setInputValid("Your name must have letters!");
         return;
       } else {
-        setError(undefined);
-        handleGoToCards();
+        setInputValid(undefined);
       }
     },
-    [name, handleGoToCards] // name? debug
+    []
   );
 
-  /*function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    if (!name) {
-      setError("Enter your name!");
-      return;
-    }
-    if (name.length <= 1) {
-      setError("The name is too short!");
-      setName("");
-      return;
-    }
-    if (name.trim() !== "" && Number.isFinite(Number(name.trim()))) {
-      setError("Your name must have letters!");
-      setName("");
-      return;
-    }
-    setError(undefined);
-    handleGoToCards();
-  } */
+  const handleSubmit = React.useCallback(() => {
+    navigate("/cards");
+  }, [navigate]);
 
-  // onSubmit?
   return (
     <div id="display" className={dark ? "dark" : ""}>
       <div id="InputContainer" className={dark ? "dark" : ""}>
         <h1>Hi {name || "stranger"}! What&apos;s your name?</h1>
 
         <form onSubmit={handleSubmit}>
-          <input
-            id="NameInput"
-            className={inputValid ? "error" : "noerror"}
-            placeholder="Enter your name"
-            value={name}
-            onChange={handleChange}
-          />
+          <div id="NameInputContainer">
+            <input
+              id="NameInput"
+              className={inputValid ? "error" : "noerror"}
+              placeholder="Enter your name"
+              value={name}
+              onChange={handleChange}
+            />
+            <p id="Counter">{characterCounter}/15</p>
+          </div>
           <p id="InputParagraph" className={inputValid ? "error" : "noerror"}>
             {inputValid}
           </p>
-          <button // create a form, type submit onSubmit, if inputError, useCallback (handle), inputError dependency
+          <button
             id="GreetingButton"
-            // type="submit"
-            // disabled={Boolean(inputValid)}
+            type="submit"
+            disabled={Boolean(inputValid)}
           >
-            {`Click me, ${name || "stranger"}!`}
+            {`Let's go, ${name || "stranger"}!`}
           </button>
         </form>
 

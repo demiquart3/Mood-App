@@ -26,11 +26,11 @@
 #GoBackButton {
   background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 600;
   padding: 0px 12px;
-  width: 30px;
-  height: 30px;
+  width: 100px;
+  height: 50px;
   border: none;
   border-radius: 12px;
   cursor: pointer;
@@ -42,60 +42,37 @@
   left: 20px;
 }
 
-.oneSide {
-  width: 250px;
-  height: 250px;
-  background-color: rgb(162, 196, 255);
-}
-
-.setOneSide {
-  width: 250px;
-  height: 250px;
-  background-color: rgb(96, 123, 168);
+.card {
+  width: 240px;
+  height: 290px;
   margin: 20px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #58689e, #35336c);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-#sadCard {
-  width: 250px;
-  height: 250px;
-  margin: 20px;
-  background-color: aliceblue;
+.card.boredCard {
+  background-size: cover;
+  background-position: center;
 }
 
-#sadCard:hover {
-  background-color: rgb(46, 103, 152);
+.card.happyCard {
+  background-size: cover;
+  background-position: center;
 }
 
-#boredCard {
-  width: 250px;
-  height: 250px;
-  margin: 20px;
-  background-color: grey;
+.card.sadCard {
+  background-size: cover;
+  background-position: center;
 }
 
-#boredCard:hover {
-  background-color: #667eea;
+.card.angryCard {
+  background-size: cover;
+  background-position: center;
 }
 
-#lonelyCard {
-  width: 250px;
-  height: 250px;
-  margin: 20px;
-  transition: transform 0.7s;
-}
-
-#lonelyCard:hover {
-  background-color: rgb(47, 166, 40);
-  transform: rotateY(3.142rad);
-}
-
-#angryCard {
-  width: 250px;
-  height: 250px;
-  margin: 20px;
-  background-color: red;
-}
-
-#angryCard:hover {
-  background-color: #b54312;
+.card:hover {
+  background-size: 100%;
+  cursor: pointer;
+  transition: all 0.5s ease;
 }
