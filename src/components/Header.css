@@ -1,0 +1,21 @@
+.main-header {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 236, 193, 1);
+  border-radius: 40px;
+}
+
+.main-header .header-links {
+  width: 100%;
+  max-width: 948px;
+  margin: 0 auto;
+  padding: 10px 150px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}

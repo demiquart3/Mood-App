@@ -1,0 +1,62 @@
+.button {
+  background: black;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 0 12px;
+  width: 100px;
+  height: 50px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 40px;
+}
+
+.button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+.button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.5);
+}
+
+.button:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.button:disabled {
+  background: linear-gradient(135deg, #8a8ea1, hsl(268, 5%, 49%));
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 15px 24px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+  margin-left: 60px;
+}
+
+.button.large {
+  width: 200px;
+  height: 50px;
+  font-size: 20px;
+}
+
+.button.small {
+  width: 100px;
+  height: 40px;
+  font-size: 14px;
+}

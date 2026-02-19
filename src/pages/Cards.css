@@ -1,12 +1,25 @@
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  scrollbar-gutter: stable;
+}
+
 #Display {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
+  justify-content: flex-start;
+  min-height: 100dvh;
   background: linear-gradient(135deg, #e0e7ff, #f0f0f0);
   font-family: "Segoe UI", Tahoma, sans-serif;
   perspective: 1000px;
+  box-sizing: border-box;
+  padding: 20px 16px;
+  position: relative;
+  overflow-y: auto;
 }
 
 #GalleryTitle {
@@ -14,65 +27,119 @@
   font-size: 36px;
   font-weight: 200;
   color: rgb(102, 90, 129);
+  margin-top: 100px;
 }
 
-#GalleryRow {
+#CardTextRow {
   display: flex;
-  flex-flow: row;
   justify-content: center;
   margin-top: 20px;
 }
 
-#GoBackButton {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
-  font-size: 15px;
-  font-weight: 600;
-  padding: 0px 12px;
-  width: 100px;
-  height: 50px;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  margin-top: 12px;
-  position: absolute;
-  top: 20px;
-  left: 20px;
+#GalleryRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 1200px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .card {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  margin-top: 80px;
+}
+
+.card.large {
   width: 240px;
   height: 290px;
-  margin: 20px;
   border-radius: 20px;
-  background: linear-gradient(135deg, #58689e, #35336c);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.card.boredCard {
-  background-size: cover;
-  background-position: center;
+.card.small {
+  width: 140px;
+  height: 190px;
+  border-radius: 10px;
 }
 
-.card.happyCard {
-  background-size: cover;
-  background-position: center;
-}
-
-.card.sadCard {
-  background-size: cover;
-  background-position: center;
-}
-
-.card.angryCard {
-  background-size: cover;
-  background-position: center;
+.card:hover {
+  filter: brightness(1.05);
+  transition: filter 0.3s ease;
 }
 
 .card:hover {
   background-size: 100%;
   cursor: pointer;
   transition: all 0.5s ease;
+}
+
+.card:hover {
+  background-size: 100%;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.card.bored,
+.card.happy,
+.card.sad,
+.card.angry {
+  background-size: cover;
+  background-position: center;
+}
+
+.textBox {
+  width: min(600px, 100%);
+  height: auto;
+  min-height: 300px;
+}
+
+.cardText {
+  font-size: 10px;
+}
+
+.takeATestSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 12px;
+  width: 100%;
+}
+
+.quizButtonWrapper {
+  position: absolute;
+  top: 16px;
+  left: 1000px;
+  margin: 0;
+  z-index: 10;
+}
+
+.goBackButtonWrapper {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  margin: 0;
+  z-index: 10;
+}
+
+.takeATestButtonWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+  gap: 12px;
+  width: 100%;
+}
+
+.takeATestParagraph {
+  font-size: 14px;
+  color: #444444;
+  margin-top: 24px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

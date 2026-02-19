@@ -1,12 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
+import Button from "../components/Button";
+import Header from "../components/Header";
 
 function App() {
   const [name, setName] = React.useState("");
   const [dark, setDark] = React.useState(false);
   const [inputValid, setInputValid] = React.useState<string | undefined>(
-    undefined
+    undefined,
   ); // inputValid
   const [characterCounter, setCharacterCounter] = React.useState(0);
 
@@ -39,7 +41,7 @@ function App() {
         setInputValid(undefined);
       }
     },
-    []
+    [],
   );
 
   const handleSubmit = React.useCallback(() => {
@@ -48,10 +50,11 @@ function App() {
 
   return (
     <div id="display" className={dark ? "dark" : ""}>
+      <Header></Header>
       <div id="InputContainer" className={dark ? "dark" : ""}>
         <h1>Hi {name || "stranger"}! What&apos;s your name?</h1>
 
-        <form onSubmit={handleSubmit}>
+        <form className="inputForm" onSubmit={handleSubmit}>
           <div id="NameInputContainer">
             <input
               id="NameInput"
@@ -62,21 +65,27 @@ function App() {
             />
             <p id="Counter">{characterCounter}/15</p>
           </div>
-          <p id="InputParagraph" className={inputValid ? "error" : "noerror"}>
-            {inputValid}
-          </p>
-          <button
-            id="GreetingButton"
-            type="submit"
-            disabled={Boolean(inputValid)}
-          >
-            {`Let's go, ${name || "stranger"}!`}
-          </button>
+          <div className="formBottomContainer">
+            <p id="InputParagraph" className={inputValid ? "error" : "noerror"}>
+              {inputValid}
+            </p>
+            <div className="submitButtonWrapper">
+              <Button
+                size="large"
+                type="submit"
+                disabled={Boolean(inputValid)}
+                buttonName={`Let's go, ${name || "stranger"}!`}
+              />
+            </div>
+          </div>
         </form>
-
-        <button id="ToggleButton" onClick={() => setDark((prev) => !prev)}>
-          Change Mode
-        </button>
+        <div className="modeButtonWrapper">
+          <Button
+            size="small"
+            onClick={() => setDark((prev) => !prev)}
+            buttonName="Switch Modes"
+          />
+        </div>
       </div>
     </div>
   );
