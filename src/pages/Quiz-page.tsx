@@ -1,98 +1,106 @@
-import { useNavigate } from "react-router-dom";
 import React from "react";
 import "./Cards.css";
 import "./App.tsx";
-import Button from "../components/Button";
 import "./App.tsx";
 import QuizInput from "../components/QuizInput.tsx";
 import "./Quiz-page.css";
 import Header from "../components/Header";
 
 export default function QuizPage() {
-  const [score, setScore] = React.useState(0);
-  const navigate = useNavigate();
+  type Question = {
+    id: "q1" | "q2" | "q3" | "q4";
+    text: string;
+    options: {
+      id: "o1" | "o2" | "o3";
+      text: string;
+      value: number;
+    }[];
+  };
+  const [activeQuestion, setActiveQuestion] =
+    React.useState<Question["id"]>("q1");
 
-  const [color, setColor] = React.useState("green");
+  const [result, setResult] = React.useState(0);
+  const [finished, setFinished] = React.useState(false);
 
-  function handleSelect() {
-    setColor("pink");
-  }
+  /*const questions2 = {
+    q1: {
+      text: "daf",
+      options: {
+        o1: {
+          text: "ssf",
+          value: 1
+        }
+      }
+    }
+  }*/
 
-  const [selected, setSelected] = React.useState({
-    q1: false,
-    q2: false,
-    q3: false,
-    q4: false,
-  });
+  const questions: Question[] = [
+    {
+      id: "q1",
+      text: "How are you feeling right now?",
+      options: [
+        { id: "o1", text: "Good, full of energy", value: 1 },
+        { id: "o2", text: "Neutral", value: 2 },
+        { id: "o3", text: "Tired or low", value: 3 },
+      ],
+    },
+    {
+      id: "q2",
+      text: "Which option best describes your mood today?",
+      options: [
+        { id: "o1", text: "Happy or inspired", value: 1 },
+        { id: "o2", text: "Calm", value: 2 },
+        { id: "o3", text: "Anxious or sad", value: 3 },
+      ],
+    },
+  ];
 
-  const [activeQuestion, setActiveQuestion] = React.useState<
-    "q1" | "q2" | "q3" | "q4"
-  >("q1");
-
-  const questions: ("q1" | "q2" | "q3" | "q4")[] = ["q1", "q2", "q3", "q4"];
-
-  function handleClick() {
-    const index = questions.indexOf(activeQuestion);
+  function handleClick(e: React.ChangeEvent<HTMLInputElement>) {
+    const index = questions.findIndex(
+      (question) => question.id === activeQuestion,
+    );
     const next = questions[index + 1];
-    if (next) {
-      setActiveQuestion(next);
+
+    const isLast = index === questions.length - 1;
+    if (!isLast) {
+      setActiveQuestion(questions[index + 1].id);
     } else {
+    }
+
+    setActiveQuestion(next.id);
+    const points = Number(e.currentTarget.value);
+    setResult((prev) => prev + points);
+
+    if (result >= 10) {
+      alert("You're doung okay");
+    } else {
+      alert("You need help");
     }
   }
 
+  const question = questions.find((q) => q.id === activeQuestion);
+  if (!question) {
+    return <div>No question found</div>;
+  }
+
   return (
-    <div>
-      {" "}
+    <div className="quiz-wrapper">
       <Header></Header>
-      <div className="quiz-wrapper">
-        {activeQuestion === "q1" && (
-          <div className="firstQuestion">
-            <h2>How are you feeling right now?</h2>
+      <div>
+        <div key={question.id}>
+          <h3>{question.text}</h3>
+          {question.options.map((opt) => (
             <QuizInput
-              text="Good, full of energy"
-              questionId="q1"
-              count={1}
-              onSelect={handleClick}
+              key={opt.id}
+              text={opt.text}
+              value={opt.value}
+              onChange={handleClick}
             />
-            <QuizInput
-              text="Neutral"
-              questionId="q1"
-              count={2}
-              onSelect={handleClick}
-            />
-            <QuizInput
-              text="Tired or low"
-              questionId="q1"
-              count={3}
-              onSelect={handleClick}
-            />
-          </div>
-        )}
-        {activeQuestion === "q2" && (
-          <div className="secondQuestion">
-            <h2>Which option best describes your mood today?</h2>
-            <QuizInput
-              text="Happy or inspired"
-              questionId="q2"
-              count={1}
-              onSelect={handleSelect}
-            />
-            <QuizInput
-              text="Calm"
-              questionId="q2"
-              count={2}
-              onSelect={handleSelect}
-            />
-            <QuizInput
-              text="Anxious or sad"
-              questionId="q2"
-              count={3}
-              onSelect={handleSelect}
-            />
-          </div>
-        )}
-        <div></div>
+          ))}
+        </div>
       </div>
+
+      <div></div>
     </div>
   );
 }

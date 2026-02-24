@@ -13,8 +13,8 @@ export default function Header({ className }: HeaderProps) {
       <a className="header-links" href="/quiz">
         Quiz
       </a>
-      <a className="header-links" href="/contact">
-        Contact
+      <a className="header-links" href="/diary">
+        Diary
       </a>
     </div>
   );

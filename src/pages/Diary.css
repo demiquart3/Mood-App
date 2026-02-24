@@ -1,0 +1,109 @@
+.diary {
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: auto 1fr; /* Header + контент */
+  background: rgba(150, 168, 86, 1);
+  padding: 150px;
+  color: #f2f3f7;
+}
+
+/* Контентная сетка страницы */
+.diary-grid {
+  --maxw: 960px;
+  --gap: 20px;
+
+  width: min(100%, var(--maxw));
+  margin: 0 auto;
+  padding: 24px 16px;
+
+  display: grid;
+  gap: var(--gap);
+  /* Три области: title, subtitle, form */
+  grid-template-areas:
+    "title"
+    "subtitle"
+    "form";
+}
+
+/* Заголовок и описание на всю ширину */
+.title {
+  grid-area: title;
+  margin: 0;
+  font-size: clamp(20px, 2.2vw, 28px);
+  line-height: 1.2;
+}
+
+.subtitle {
+  grid-area: subtitle;
+  margin: 0;
+  opacity: 0.85;
+}
+
+/* Форма — сетка 2 колонки (лейбл слева, поле справа) */
+.form {
+  grid-area: form;
+  display: grid;
+  gap: 12px 16px;
+  grid-template-columns: 160px 1fr; /* левая — фикс, правая — тянется */
+  align-items: center;
+}
+
+/* Лейблы и инпуты выравниваем */
+.label {
+  justify-self: start;
+  font-weight: 500;
+}
+
+.input {
+  width: 100%;
+  background: #d3d9f5;
+  color: #000000;
+  border: 1px solid #2a3050;
+  border-radius: 8px;
+  padding: 10px 12px;
+  outline: none;
+}
+
+.input:focus {
+  border-color: #6ea8fe;
+  box-shadow: 0 0 0 3px rgba(110, 168, 254, 0.2);
+}
+
+/* Кнопки — на всю ширину формы (через grid-column) */
+.actions {
+  grid-column: 1 / -1; /* строка растягивается на две колонки */
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.btn {
+  background: #6ea8fe;
+  color: #0b0f1e;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn:hover {
+  filter: brightness(1.05);
+}
+
+/* Адаптив: на узких экранах форма становится в одну колонку */
+@media (max-width: 640px) {
+  .form {
+    grid-template-columns: 1fr; /* одна колонка */
+  }
+  .label {
+    margin-top: 8px;
+  }
+  .actions {
+    justify-content: stretch;
+  }
+  .btn {
+    width: 100%;
+  }
+}

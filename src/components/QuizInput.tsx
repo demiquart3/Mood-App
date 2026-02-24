@@ -4,27 +4,26 @@ type QuizProps = {
   text: string;
   selected?: boolean;
   className?: string;
-  count: number;
-  questionId: string;
-  onSelect: (questionId: string, count: number) => void;
+  value: number;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export default function QuizInput({
   text,
-  questionId,
   selected,
-  onSelect,
-  count,
+  value,
+  onChange,
 }: QuizProps) {
-  const handleClick = () => onSelect(questionId, count);
   return (
-    <button
-      type="button"
-      aria-pressed={selected}
-      className={`quiz-input ${selected ? "is-selected" : ""}`}
-      onClick={handleClick}
-    >
-      {text}
-    </button>
+    <div>
+      <input
+        type="radio"
+        className={`quiz-input ${selected ? "is-selected" : ""}`}
+        checked={selected}
+        value={String(value)}
+        onChange={onChange}
+      ></input>
+      <label>{text}</label>
+    </div>
   );
 }
