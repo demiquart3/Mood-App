@@ -13,6 +13,7 @@
 .main-header .header-links {
   width: 100%;
   max-width: 948px;
+  max-height: 68px;
   margin: 0 auto;
   padding: 10px 150px;
   display: flex;

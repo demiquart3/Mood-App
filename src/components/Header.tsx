@@ -10,8 +10,11 @@ export default function Header({ className }: HeaderProps) {
       <a className="header-links" href="/">
         Home
       </a>
+      <a className="header-links" href="/cards">
+        Moodiosity
+      </a>
       <a className="header-links" href="/quiz">
-        Quiz
+        Test
       </a>
       <a className="header-links" href="/diary">
         Diary

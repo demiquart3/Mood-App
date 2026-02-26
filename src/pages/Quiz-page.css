@@ -1,38 +1,15 @@
-body {
-  margin: 0;
-  font-family: "Segoe UI", Tahoma, sans-serif;
-  background: linear-gradient(135deg, #e0e7ff, #f0f0f0);
-}
-
 .quiz-wrapper {
+  background: rgba(254, 190, 155, 1);
   display: grid;
   place-items: center;
   height: 100vh;
-  padding: 40px 20px;
+  padding: 10px 10px;
 }
 
-.firstQuestion,
-.secondQuestion {
-  width: 500px;
-  height: 300px;
-  background-color: #c3caff;
-  border-radius: 18px;
-  padding: 40px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.question-text {
   align-items: center;
-
-  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
-
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-.firstQuestion:hover,
-.secondQuestion:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 28px 40px rgba(0, 0, 0, 0.18);
+  font-family: "Bungee", sans-serif;
+  font-size: 20px;
+  padding: 10px;
+  margin: 0px;
 }

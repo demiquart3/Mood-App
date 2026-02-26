@@ -15,15 +15,15 @@ export default function QuizInput({
   onChange,
 }: QuizProps) {
   return (
-    <div>
+    <div className="quiz-selection-container">
       <input
         type="radio"
-        className={`quiz-input ${selected ? "is-selected" : ""}`}
+        className={`quiz-selection ${selected ? "is-selected" : ""}`}
         checked={selected}
         value={String(value)}
         onChange={onChange}
       ></input>
-      <label>{text}</label>
+      <label className="quiz-question">{text}</label>
     </div>
   );
 }
