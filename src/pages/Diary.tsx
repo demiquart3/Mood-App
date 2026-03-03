@@ -2,40 +2,34 @@ import { useNavigate } from "react-router-dom";
 import * as React from "react";
 import "./Cards.css";
 import "./App.tsx";
-import MoodCard from "../components/Card";
 import Button from "../components/Button";
 import Header from "../components/Header";
 
 export default function Diary() {
   type Question = {
-    id: "q1" | "q2" | "q3";
     text: string;
-  }[];
+  };
 
+  const questions: Question[] = [
+    {
+      text: "What did you feel today?",
+    },
+    {
+      text: "What did you do today?",
+    },
+    {
+      text: "Is there is something that made you feel better today?",
+    },
+  ];
   const [diary, setDiary] = React.useState([""]);
   const [newDiary, setNewDiary] = React.useState("");
 
-  const [activeQuestion, setActiveQuestion] =
-    React.useState<Question["id"]>("q1");
+  const [activeQuestion, setActiveQuestion] = React.useState(0);
 
   React.useEffect(() => {
     localStorage.setItem("diary", JSON.stringify(diary));
   }, [diary]);
-
-  const questions: Question[] = [
-    {
-      id: "q1",
-      text: "What did you feel today?",
-    },
-    {
-      id: "q2",
-      text: "What did you do today?",
-    },
-    {
-      id: "q3",
-      text: "Is there is something that made you feel better today?",
-    },
-  ];
+  const isQuestionActive = questions[activeQuestion];
 
   function handleSubmit(e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault();
@@ -80,9 +74,11 @@ export default function Diary() {
             className="input"
           />
 
-          <label htmlFor="feelings" className="label">
-            What did you feel?
-          </label>
+          {activeQuestion < questions.length ? (
+            <label htmlFor="feelings" className="label">
+              What did you feel?
+            </label>
+          ) : null}
 
           <input
             id="feelings"

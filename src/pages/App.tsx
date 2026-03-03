@@ -44,9 +44,19 @@ function App() {
     [],
   );
 
-  const handleSubmit = React.useCallback(() => {
-    navigate("/cards");
-  }, [navigate]);
+  const handleSubmit = React.useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      if (name) {
+        navigate("/cards");
+      } else {
+        setInputValid("Enter your name!");
+      }
+    },
+    [name, navigate],
+  );
+
+  console.log(name);
 
   return (
     <div id="display" className={dark ? "dark" : ""}>
