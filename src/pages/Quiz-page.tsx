@@ -18,17 +18,7 @@ export default function QuizPage() {
     }[];
   };
 
-  /*const questions2 = {
-    q1: {
-      text: "daf",
-      options: {
-        o1: {
-          text: "ssf",
-          value: 1
-        }
-      }
-    }
-  }*/
+  const name = localStorage.getItem("name") ?? "stranger";
 
   const questions: Question[] = [
     {
@@ -69,56 +59,57 @@ export default function QuizPage() {
     },
   ];
 
-  const [result, setResult] = React.useState(0);
-  const [activeQuestion, setActiveQuestion] = React.useState(0); // (0)
+  const [activeQuestion, setActiveQuestion] = React.useState(0);
 
-  // stale closure?
-  const handleClick = React.useCallback(
+  // i created an array for answers. the array is empty with 4 empty "boxes" for each answer(score)
+  // every answer = one score. a box has only one cell for every chosen option. click = one cell is filled.
+  // useMemo is a React Hook that lets you cache the result of a calculation
+  // between re-renders. const cachedValue = useMemo(calculateValue, dependencies)
+  const [answers, setAnswers] = React.useState<(number | null)[]>(
+    React.useMemo(
+      () => Array.from({ length: questions.length }, () => null),
+      [],
+    ),
+  );
+
+  // error text
+  const [inputValid, setInputValid] = React.useState<string | undefined>(
+    undefined,
+  );
+
+  // i put score in answers[activeQuestion]
+  const handleSelect = React.useCallback(
     (score: number) => {
-      setActiveQuestion(activeQuestion + 1);
-      setResult(result + score);
+      setAnswers((prev) => {
+        const next = [...prev];
+        next[activeQuestion] = score;
+        return next;
+      });
+      setInputValid(undefined);
     },
     [activeQuestion],
   );
 
-  const question = questions[activeQuestion];
-  // useCallback
-  /* function handleClick(score: number) {
-    const index = questions.findIndex(
-      (question) => question.id === activeQuestion,
-    ); 
-    setActiveQuestion(activeQuestion + 1);
-
-    setResult(result + score);
-
-    console.log("score", setResult);
-
-    console.log("index:", setActiveQuestion);
-
-    /* setResult((prev) => prev + values)
-
-    console.log("result:", totalResult); 
-    */
-
-  /* const isLast = index === questions.length - 1;
-    if (!isLast) {
-      setActiveQuestion(questions[index + 1].id);
-    } else {
-    }*/
-
-  /* console.log("isLast:", isLast);
-
-    const points = Number(e.currentTarget.value);
-    setResult((prev) => prev + points);
-    console.log("points (number):", points);
-    setFinished((prev) => ({ ...prev, [activeQuestion]: true })); */
-
-  /*if (points <= 10) {
-      alert("You're doing okay");
-    } else {
-      alert("You need help");
+  console.log("active", activeQuestion);
+  // next button: checking if the next question is chosen
+  const handleClick = React.useCallback(() => {
+    if (answers[activeQuestion] == null) {
+      // i check if there's a number in answers. if not, then error
+      setInputValid("Choose an option!");
+      return;
     }
-      */
+    setActiveQuestion(activeQuestion + 1); // if everything's okay = next
+  }, [answers, activeQuestion]);
+
+  const question = questions[activeQuestion];
+
+  // calculating answers that react memorized in the new array (answers)
+  const total = React.useMemo(
+    () => answers.reduce((sum, v) => sum + (v ?? 0), 0),
+    [answers],
+  );
+
+  console.log("answer", answers);
 
   return (
     <div className="quiz-wrapper">
@@ -127,26 +118,47 @@ export default function QuizPage() {
       <div>
         {activeQuestion < questions.length ? (
           <div>
-            <h3 className="question-text">{question.text}</h3>
+            <h3 className="question-text">
+              {" "}
+              {name}
+              {question.text}
+            </h3>
             {question.options.map((opt) => (
               <QuizInput
                 key={opt.key}
-                selected={false}
+                selected={answers[activeQuestion] === opt.score} // option highlight
                 text={opt.text}
                 value={opt.score}
                 onChange={() => {
-                  handleClick(Number(opt.score));
+                  handleSelect(Number(opt.score)); // put it in answers
                 }}
               />
             ))}
+            <Button
+              size="large"
+              disabled={answers[activeQuestion] == null} // blocking next if the option is not chosen
+              onClick={handleClick} // if yes go next
+              buttonName="next"
+            ></Button>
+            <p>{inputValid}</p>
           </div>
         ) : (
-          <div>
-            Result: {result}
-            <MoodCard size="large"></MoodCard>
+          <div className="resultPage">
+            Result:
+            {total}
+            {total <= 4 ? (
+              <MoodCard size="large" mood="happy"></MoodCard>
+            ) : total <= 8 ? (
+              <MoodCard size="large" mood="bored"></MoodCard>
+            ) : total <= 12 ? (
+              <MoodCard size="large" mood="sad"></MoodCard>
+            ) : (
+              <MoodCard size="large" mood="angry"></MoodCard>
+            )}
           </div>
         )}
       </div>
     </div>
   );
 }
+``;

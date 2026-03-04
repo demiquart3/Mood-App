@@ -11,7 +11,7 @@ export default function Header({ className, color }: HeaderProps) {
       <a className="header-links" href="/">
         Home
       </a>
-      <a className="header-links" href="/cards">
+      <a className="header-links" href="/app">
         Moodiosity
       </a>
       <a className="header-links" href="/quiz">

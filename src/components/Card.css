@@ -34,7 +34,7 @@
   background-position: center;
 }
 
-.textBox {
+.text {
   width: min(600px, 100%);
   height: auto;
   min-height: 300px;

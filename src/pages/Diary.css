@@ -1,3 +1,10 @@
+body {
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  background-image: url("src/images/background 1.png");
+}
+
 .diary {
   min-height: 100svh;
   display: grid;

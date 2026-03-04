@@ -3,8 +3,14 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: rgba(150, 168, 86, 1);
   font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+body {
+  background-image: url("src/images/background 1.png");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
 }
 
 #display.dark {

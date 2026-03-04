@@ -5,7 +5,7 @@ type CardProps = {
   className?: string;
   mood: "angry" | "sad" | "happy" | "bored";
   size?: "small" | "large";
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 const cardImages = {
@@ -37,10 +37,13 @@ export default function MoodCard({ mood, onClick, size = "large" }: CardProps) {
   const img = cardImages[mood];
   const txt = cardText[mood];
   return (
-    <div
-      onClick={onClick}
-      style={{ backgroundImage: `url(${img})` }}
-      className={`card ${mood} ${size}`}
-    ></div>
+    <div>
+      <div
+        onClick={onClick}
+        style={{ backgroundImage: `url(${img})` }}
+        className={`card ${mood} ${size}`}
+      ></div>
+      <div className={`text ${txt}`}></div>
+    </div>
   );
 }

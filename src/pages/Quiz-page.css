@@ -21,3 +21,8 @@ body {
   padding: 10px;
   margin: 0px;
 }
+
+.resultPage {
+  display: flex;
+  flex-direction: row;
+}

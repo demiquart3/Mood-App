@@ -4,6 +4,7 @@ import "./Cards.css";
 import "./App.tsx";
 import MoodCard from "../components/Card";
 import Button from "../components/Button";
+import Header from "../components/Header";
 
 export default function Gallery() {
   const navigate = useNavigate();
@@ -64,6 +65,7 @@ Sadness is a normal emotion. It helps you understand that something important ma
 
   return (
     <div id="Display">
+      <Header color="yellow"></Header>
       <h2 id="GalleryTitle">Choose your mood, {name}</h2>
       <section id="GalleryRow">
         {cards.map((card) =>
