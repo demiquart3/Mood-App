@@ -20,6 +20,7 @@ body {
   width: min(100%, var(--maxw));
   margin: 0 auto;
   padding: 24px 16px;
+  padding-top: 200px;
 
   display: grid;
   gap: var(--gap);

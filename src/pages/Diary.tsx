@@ -8,44 +8,59 @@ import Header from "../components/Header";
 export default function Diary() {
   type Question = {
     text: string;
+    key: number;
   };
 
   const questions: Question[] = [
     {
+      key: 1,
       text: "What did you feel today?",
     },
     {
+      key: 2,
       text: "What did you do today?",
     },
     {
+      key: 3,
       text: "Is there is something that made you feel better today?",
     },
   ];
   const [diary, setDiary] = React.useState([""]);
   const [newDiary, setNewDiary] = React.useState("");
 
+  const [question, setQuestion] = React.useState([]);
+
+  (Array.from({ length: questions.length }, () => null), []);
+
   const [activeQuestion, setActiveQuestion] = React.useState(0);
 
   React.useEffect(() => {
     localStorage.setItem("diary", JSON.stringify(diary));
   }, [diary]);
-  const isQuestionActive = questions[activeQuestion];
 
   function handleSubmit(e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault();
     setNewDiary(e.currentTarget.value);
+    setActiveQuestion(activeQuestion + 1);
   }
+
+  console.log("active question", activeQuestion);
+  console.log("diary", diary);
 
   function addDiaryLog() {
     setDiary((prev) => [...prev, newDiary]);
     setNewDiary("");
   }
 
+  console.log("new diary", newDiary);
+
   function deleteDiaryLog() {
     setDiary([]);
   }
 
   function changeDiaryLog() {}
+
+  const isQuestionActive = questions[activeQuestion];
 
   return (
     <div className="diary">
@@ -88,15 +103,17 @@ export default function Diary() {
             onChange={handleSubmit}
             placeholder="Write a short note…"
           />
-
-          <ul>
-            {" "}
-            {diary.map((d, index) => (
-              <li key={index}>
-                <span>{d}</span>
-              </li>
-            ))}
-          </ul>
+          <div>
+            <div className="diaryTextQuestion1">
+              <p>{diary}</p>
+            </div>
+            <div className="diaryTextQuestion2">
+              <p></p>
+            </div>
+            <div className="diaryTextQuestion3">
+              <p></p>
+            </div>
+          </div>
 
           {}
           <div className="actions">

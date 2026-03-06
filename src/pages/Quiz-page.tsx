@@ -65,24 +65,20 @@ export default function QuizPage() {
   // every answer = one score. a box has only one cell for every chosen option. click = one cell is filled.
   // useMemo is a React Hook that lets you cache the result of a calculation
   // between re-renders. const cachedValue = useMemo(calculateValue, dependencies)
-  const [answers, setAnswers] = React.useState<(number | null)[]>(
-    React.useMemo(
-      () => Array.from({ length: questions.length }, () => null),
-      [],
-    ),
-  );
+  // empty array
+  const [answers, setAnswers] = React.useState<number[]>([]);
 
   // error text
   const [inputValid, setInputValid] = React.useState<string | undefined>(
     undefined,
   );
 
-  // i put score in answers[activeQuestion]
+  // i put a score in answers[activeQuestion]
   const handleSelect = React.useCallback(
     (score: number) => {
       setAnswers((prev) => {
         const next = [...prev];
-        next[activeQuestion] = score;
+        next[activeQuestion] = score; // if nothing is here, new element will be created
         return next;
       });
       setInputValid(undefined);
@@ -101,6 +97,12 @@ export default function QuizPage() {
     setActiveQuestion(activeQuestion + 1); // if everything's okay = next
   }, [answers, activeQuestion]);
 
+  const handlePrevious = React.useCallback(() => {
+    if (activeQuestion > 0) {
+      setActiveQuestion(activeQuestion - 1);
+    }
+  }, [activeQuestion]);
+
   const question = questions[activeQuestion];
 
   // calculating answers that react memorized in the new array (answers)
@@ -111,6 +113,7 @@ export default function QuizPage() {
 
   console.log("answer", answers);
 
+  // querySelector
   return (
     <div className="quiz-wrapper">
       <Header color="yellow"></Header>
@@ -125,6 +128,7 @@ export default function QuizPage() {
             </h3>
             {question.options.map((opt) => (
               <QuizInput
+                name={`question_${activeQuestion + 1}`}
                 key={opt.key}
                 selected={answers[activeQuestion] === opt.score} // option highlight
                 text={opt.text}
@@ -134,12 +138,24 @@ export default function QuizPage() {
                 }}
               />
             ))}
-            <Button
-              size="large"
-              disabled={answers[activeQuestion] == null} // blocking next if the option is not chosen
-              onClick={handleClick} // if yes go next
-              buttonName="next"
-            ></Button>
+            <div className="ButtonsWrapper">
+              <div className="previousButton">
+                <Button
+                  size="large"
+                  disabled={answers[activeQuestion] == null}
+                  onClick={handlePrevious}
+                  buttonName="previous"
+                ></Button>
+              </div>
+              <div className="nextButton">
+                <Button
+                  size="large"
+                  disabled={answers[activeQuestion] == null} // blocking next if the option is not chosen
+                  onClick={handleClick} // if yes go next
+                  buttonName="next"
+                ></Button>
+              </div>
+            </div>
             <p>{inputValid}</p>
           </div>
         ) : (

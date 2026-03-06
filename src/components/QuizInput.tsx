@@ -1,6 +1,7 @@
 import "./QuizInput.css";
 
 type QuizProps = {
+  name: string;
   text: string;
   selected?: boolean;
   className?: string;
@@ -13,17 +14,21 @@ export default function QuizInput({
   selected,
   value,
   onChange,
+  name,
 }: QuizProps) {
   return (
     <div className="quiz-selection-container">
-      <input
-        type="radio"
-        className={`quiz-selection ${selected ? "is-selected" : ""}`}
-        checked={selected}
-        value={Number(value)}
-        onChange={onChange}
-      ></input>
-      <label className="quiz-question">{text}</label>
+      <label className="quiz-question">
+        {text}
+        <input
+          name={name}
+          type="radio"
+          className={`quiz-selection ${selected ? "is-selected" : ""}`}
+          checked={selected}
+          value={Number(value)}
+          onChange={onChange}
+        ></input>
+      </label>
     </div>
   );
 }

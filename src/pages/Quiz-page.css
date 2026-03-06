@@ -1,28 +1,42 @@
 body {
   background: rgba(150, 168, 86, 1);
-
   background-image: url("src/images/background 3.png");
   background-repeat: no-repeat;
   background-position: center top;
   background-size: cover;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
 .quiz-wrapper {
   display: grid;
   place-items: center;
-  height: 100vh;
-  padding: 10px 10px;
+  padding: 10px;
+  width: 100%;
+  max-width: 800px;
 }
 
 .question-text {
-  align-items: center;
   font-family: "Bungee", sans-serif;
   font-size: 20px;
-  padding: 10px;
-  margin: 0px;
+  margin: 0;
+  text-align: center;
 }
 
 .resultPage {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.ButtonsWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
